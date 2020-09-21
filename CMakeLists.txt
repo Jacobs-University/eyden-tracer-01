@@ -11,9 +11,9 @@ file(GLOB HEADERS "src/*.h")
 source_group("Include" FILES ${INCLUDE})
 source_group("" FILES ${INCLUDE} ${SOURCES} ${HEADERS}) 
 source_group("Source Files" FILES "src/main.cpp") 
-source_group("Source Files\\camera" FILES "src/ICamera.h" "src/CameraPerspective.h" "src/CameraOrthographic.h")
-source_group("Source Files\\primitives" FILES "src/IPrim.h" "src/PrimSphere.h" "src/PrimPlane.h" "src/PrimTriangle.h" "src/PrimDisc.h")
-source_group("Source Files\\utilities" FILES "src/ray.h")
+source_group("Source Files\\camera" FILES "src/include/ICamera.h" "src/include/CameraPerspective.h" "src/include/CameraOrthographic.h")
+source_group("Source Files\\primitives" FILES "src/include/IPrim.h" "src/include/PrimSphere.h" "src/include/PrimPlane.h" "src/include/PrimTriangle.h" "src/include/PrimDisc.h")
+source_group("Source Files\\utilities" FILES "src/include/ray.h")
 
 # OpenCV package
 find_package(OpenCV 4.0 REQUIRED core highgui imgproc imgcodecs PATHS "$ENV{OPENCVDIR}/build")
@@ -33,7 +33,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 #set(IB_API_INCLUDE_DIR "" CACHE PATH "Path to the IP API")
 
 # Properties -> C/C++ -> General -> Additional Include Directories
-include_directories(${PROJECT_SOURCE_DIR}/include ${OpenCV_INCLUDE_DIRS})
+include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/src/include ${OpenCV_INCLUDE_DIRS})
 
 #definitions
 add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS)
