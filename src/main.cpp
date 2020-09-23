@@ -1,9 +1,9 @@
-#include "include/CameraPerspective.h"
+#include "CameraPerspective.h"
 #include "include/CameraOrthographic.h"
 
-#include "include/PrimSphere.h"
-#include "include/PrimPlane.h"
-#include "include/PrimTriangle.h"
+#include "PrimSphere.h"
+#include "PrimPlane.h"
+#include "PrimTriangle.h"
 
 Mat RenderFrame(ICamera &camera) {
     // scene objects

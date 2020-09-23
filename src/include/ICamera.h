@@ -29,7 +29,7 @@ public:
     /**
         * @brief Initializes a ray \b ray passing trough a screen pixel with coordinates \b x anf \b y
         * @details This function initializes the ray pointing from the camera origin to the pixel
-        * on the camera screen defyned by the coodrinates \b (x,y). The pixel coordinates need to lie
+        * on the camera screen defined by the coordinates \b (x,y). The pixel coordinates need to lie
         * in the ranges of camera resolution.
         * @param[out] ray Reference to the @ref Ray structure to be filled
         * @param[in] x The x-coordinate of the pixel lying on the camera screen
@@ -38,7 +38,7 @@ public:
     virtual void InitRay(Ray &ray, int x, int y) = 0;
 
     /**
-        * @brief Retuns the camera resolution in pixels
+        * @brief Returns the camera resolution in pixels
         * @return The camera resolution in pixels
         */
     Size getResolution() const { return m_resolution; }

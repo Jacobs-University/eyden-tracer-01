@@ -21,7 +21,7 @@ public:
      * @param up Normalized camera up-vector
      * @param angle (Vertical) full opening angle of the viewing frustum in degrees
      */
-    CCameraPerspective(Size resolution, const Vec3f &pos, const Vec3f &dir, const Vec3f &up, float angle);
+    CCameraPerspective(const Size& resolution, const Vec3f &pos, const Vec3f &dir, const Vec3f &up, float angle);
 
     ~CCameraPerspective() override;
 
