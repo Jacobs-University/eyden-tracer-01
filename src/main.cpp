@@ -1,5 +1,5 @@
 #include "CameraPerspective.h"
-#include "include/CameraOrthographic.h"
+#include "CameraOrthographic.h"
 
 #include "PrimSphere.h"
 #include "PrimPlane.h"
@@ -22,16 +22,12 @@ Mat RenderFrame(ICamera &camera) {
 
     for (int y = 0; y < img.rows; y++)
         for (int x = 0; x < img.cols; x++) {
-
             // Initialize your ray here
-
-            // --- PUT YOUR CODE HERE ---
-
             Vec3f col = RGB(0, 0, 0); // background color
 
             /*
              * Find closest intersection with scene
-             * objetcs and calculate color
+             * objects and calculate color
              */
 
             // --- PUT YOUR CODE HERE ---

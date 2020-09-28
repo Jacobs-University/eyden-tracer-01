@@ -27,7 +27,7 @@ public:
 
     void InitRay(Ray &ray, int x, int y) override;
 
-
+    Vec3f getOrigin();
 private:
     // input values
     Vec3f m_pos;            ///< Camera origin (center of projection)

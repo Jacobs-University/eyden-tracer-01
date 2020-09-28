@@ -16,11 +16,11 @@ public:
     /**
     * @brief Constructor
     */
-    IPrim(void) = default;
+    IPrim() = default;
 
     IPrim(const IPrim &) = delete;
 
-    virtual ~IPrim(void) = default;
+    virtual ~IPrim() = default;
 
     const IPrim &operator=(const IPrim &) = delete;
 

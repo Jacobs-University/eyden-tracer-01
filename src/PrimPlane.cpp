@@ -8,6 +8,12 @@ CPrimPlane::CPrimPlane(const Vec3f &origin, const Vec3f &normal)
 CPrimPlane::~CPrimPlane() = default;
 
 bool CPrimPlane::intersect(Ray &ray) const {
-// --- PUT YOUR CODE HERE ---
-    return false;
+    auto a = (m_origin - ray.org).dot(m_normal);
+    auto b = ray.dir.dot(m_normal);
+    if (b < Epsilon)
+        return false;
+    if (a < Epsilon)
+        return false;
+    ray.dir = a / b;
+    return true;
 }

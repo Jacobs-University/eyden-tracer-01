@@ -31,6 +31,18 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(cp_test camera_perspective.cpp)
-target_link_libraries(cp_test gtest_main)
-add_test(CAMERA_PERSPECTIVE camera_perspective_test COMMAND cp_test)
+add_executable(unit_tests camera_perspective.cpp)
+target_link_libraries(unit_tests gtest_main core)
+add_test(CAMERA_PERSPECTIVE camera_perspective_test COMMAND unit_tests)
+
+add_custom_command(
+        OUTPUT unit_test_run.lic
+        COMMAND unit_tests
+        COMMENT "running unit tests"
+        VERBATIM
+)
+
+add_custom_target(
+        RunUnitTests ALL
+        DEPENDS unit_test_run.lic
+)
