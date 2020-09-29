@@ -11,6 +11,9 @@ bool CPrimPlane::intersect(Ray &ray) const {
     auto d = (m_origin - ray.org).dot(m_normal) / ray.dir.dot(m_normal);
     if (d < Epsilon || d > std::numeric_limits<float>::max())
         return false;
+    // if we already have a closer intersection.
+    if (ray.t < d)
+        return false;
     ray.t = d;
     return true;
 }

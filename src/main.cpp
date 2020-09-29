@@ -27,39 +27,25 @@ Mat RenderFrame(ICamera &camera) {
     const auto yellow = RGB(1, 1, 0); // p1
     const auto cyan = RGB(0, 1, 1); // t1
     const auto white = RGB(1, 1, 1); // t2
+    const auto fallBack = RGB(0, 0, 0);
 
     for (int x = 0; x < img.rows; x++)
         for (int y = 0; y < img.cols; y++) {
             camera.InitRay(ray, y, x);
-            auto t = std::numeric_limits<float>::max();
-            img.at<Vec3f>(x, y) = RGB(0, 0, 0);
-            if (s1.intersect(ray) && ray.t <= t) {
-                t = ray.t;
+            img.at<Vec3f>(x, y) = fallBack;
+            if (s1.intersect(ray))
                 img.at<Vec3f>(x, y) = red;
-            }
-            if (s2.intersect(ray) && ray.t <= t) {
-                t = ray.t;
+            if (s2.intersect(ray))
                 img.at<Vec3f>(x, y) = green;
-            }
-            if (s3.intersect(ray) && ray.t <= t) {
-                t = ray.t;
+            if (s3.intersect(ray))
                 img.at<Vec3f>(x, y) = blue;
-            }
-            if (p1.intersect(ray) && ray.t <= t) {
-                t = ray.t;
+            if (p1.intersect(ray))
                 img.at<Vec3f>(x, y) = yellow;
-            }
-            if (t1.intersect(ray)) {
-                t = ray.t;
+            if (t1.intersect(ray))
                 img.at<Vec3f>(x, y) = cyan;
-            }
-            if (t2.intersect(ray)) {
-                if (ray.t <= t) {
-                    img.at<Vec3f>(x, y) = white;
-                }
-            }
+            if (t2.intersect(ray))
+                img.at<Vec3f>(x, y) = white;
         }
-
     img.convertTo(img, CV_8UC3, 255);
     return img;
 }
