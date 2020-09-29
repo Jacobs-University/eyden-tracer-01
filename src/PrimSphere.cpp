@@ -13,10 +13,10 @@ bool CPrimSphere::intersect(Ray &ray) const {
     if (delta < 0){
         return false;
     }
-    else if (delta == 0){
+    else if (delta <= Epsilon){
         auto x = 2*ray.dir.dot(L);
         if (x > Epsilon && x < max){
-            ray.dir = x;
+            ray.t = x;
             return true;
         }
     }
@@ -28,14 +28,14 @@ bool CPrimSphere::intersect(Ray &ray) const {
         {
             if (x1 > Epsilon && x1 < max)
             {
-                ray.dir = x1;
+                ray.t = x1;
                 return true;
             }
             return false;
         } else {
             if (x2 > Epsilon && x2 < max)
             {
-                ray.dir = x2;
+                ray.t = x2;
                 return true;
             }
             return false;

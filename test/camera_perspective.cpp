@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdlib>
+#include <PrimSphere.h>
 
 #include "gtest/gtest.h"
 #include "types.h"
@@ -13,7 +14,9 @@ using ::testing::TestInfo;
 using ::testing::TestPartResult;
 using ::testing::UnitTest;
 
+
 double TOLERANCE = 1.0e-3;
+float INF = std::numeric_limits<float>::max();
 
 void assertVec(Vec3f a, Vec3f b, double tolerance)
 {
