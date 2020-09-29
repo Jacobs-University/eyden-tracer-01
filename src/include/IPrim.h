@@ -18,7 +18,7 @@ public:
     */
     IPrim() = default;
 
-    IPrim(const IPrim &) = delete;
+    IPrim(const IPrim &) = default;
 
     virtual ~IPrim() = default;
 

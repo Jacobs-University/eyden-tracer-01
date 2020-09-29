@@ -1,3 +1,4 @@
+#include <PrimDisc.h>
 #include "CameraPerspective.h"
 #include "CameraOrthographic.h"
 
@@ -8,7 +9,7 @@
 Mat RenderFrame(ICamera &camera) {
 // scene objects
 
-    CPrimSphere s1(Vec3f(-2, 1.7f, 0), 2);
+    CPrimDisc s1(Vec3f(-2, 1.7f, 0), Vec3f(0, 0, 1), 2);
     CPrimSphere s2(Vec3f(1, -1, 1), 2.2f);
     CPrimSphere s3(Vec3f(3, 0.8f, -2), 2);
     CPrimPlane p1(Vec3f(0, -1, 0), Vec3f(0, 1, 0));
@@ -22,6 +23,7 @@ Mat RenderFrame(ICamera &camera) {
 
     // colors for each primitive in the scene
     const auto red = RGB(1, 0, 0); // s1
+    const auto magenta = RGB(1, 0, 1); // s1
     const auto green = RGB(0, 1, 0); // s2
     const auto blue = RGB(0, 0, 1); // s3
     const auto yellow = RGB(1, 1, 0); // p1
@@ -34,7 +36,7 @@ Mat RenderFrame(ICamera &camera) {
             camera.InitRay(ray, y, x);
             img.at<Vec3f>(x, y) = fallBack;
             if (s1.intersect(ray))
-                img.at<Vec3f>(x, y) = red;
+                img.at<Vec3f>(x, y) = magenta;
             if (s2.intersect(ray))
                 img.at<Vec3f>(x, y) = green;
             if (s3.intersect(ray))

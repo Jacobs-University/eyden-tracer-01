@@ -14,7 +14,7 @@ to input the relative path each time. You can globally use the include wherever 
 which is GTest. This dependency will automatically be cloned to your build directory. This will generally increase the amount of time
 it takes to compile and link all the targets but at least it assures that the repo will run without having to download any extra dependencies.
 * These test require us to export the eyden-tracer target as a library so that the test directory can use its interfaces and assemblies to run the tests.
-* The test will automatically run after running `make`. However, all the targets are still created in the binaries
+* The test will automatically run after running `make`. However, even upon failure, all the targets are still created in the binaries
 directory `bin`
 
 
@@ -44,8 +44,8 @@ The provided ray tracing framework contains a number of useful C++ classes, whic
 - An __abstract interface__ base class IPrim for handling scene geometric primitives. For each primitive class derived from this base class (_e.g._ CPrimSphere or CPrimTriangle), the pure virtual method ```IPrim::intersect(Ray& ray) const = 0``` has to be implemented (see below).
 - Furthermore an __abstract interface__ base class ICamera for handling the camera parameters. For each derived class (_e.g._ CCameraPerspective), the pure virtual method ```ICamera::InitRay(Ray& ray, int x, int y) = 0``` has to be implemented. Whereby x and y specify the pixel coordinates in Raster Coordinate System which should be used to initialize the ray.
 
-##~~Problem 1 (5 + 10 + 5 Points)~~
-Before implementing anything read through the presented classes and main.cpp and try to understand the object structure as well as internal dependencies. In this exercise your task now is to implement the missing parts in main.cpp, PrimPlane.h, PrimSphere.h, PrimTriangle.h, PrimDisc.h, CameraPerspective.h and CameraOrthographic.h.
+##Problem 1 (5 + 10 + 5 Points) (Done)
+Before implementing anything read through the presented classes and main.cpp and try to understand the object structure as well as internal dependencies. In this exercise your task now is to implement the missing parts in main.cpp, PrimPlane.h, PrimSphere.h, PrimTriangle.h, CPrimDisc.h, CameraPerspective.h and CameraOrthographic.h.
 > A the solution for this problem can be found in OpenRT library: www.openrt.org However it is highly recommended to solve this problem using lecture slides only and resorting to the solution only as a last resort. 
 
 ### 1.1 Primary Ray Generation
@@ -66,7 +66,7 @@ pos = (−8, 3, 8), dir = (1, −.1, −1), up = (1, 1, 0), angle = 45°
 If your ray tracer works as expected, the first resulting image should look like this:
 ![perspective1.jpg](https://github.com/Jacobs-University/eyden-tracer-01/blob/master/doc/perspective1.jpg)
 
-## Problem 2 (30 Points)
+## Problem 2 (30 Points) 
 ### Disc primitive
 Implenet the ```CPrimDisc``` class. 
 
