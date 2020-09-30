@@ -30,6 +30,7 @@ Mat RenderFrame(ICamera& camera)
 			
 			// --- PUT YOUR CODE HERE ---
 			
+			camera.InitRay(ray, x, y);
 			Vec3f col = RGB(0, 0, 0); // background color
 			
 			/*
@@ -38,11 +39,25 @@ Mat RenderFrame(ICamera& camera)
 			 */
 			
 			 // --- PUT YOUR CODE HERE ---
-			for(auto object : objects) {
-				if(object->intersect(ray)) {
-					col = object->getColor();
-				}
-			}
+            if (d1.intersect(ray)) {
+                col =  RGB(1, 0, 1);
+            }
+            
+            if (s2.intersect(ray)) {
+                col = RGB(0, 1, 0);
+            }
+            if (s3.intersect(ray)) {
+                col =  RGB(0, 0, 1);
+            }
+            if (p1.intersect(ray)) {
+                col = RGB(1, 1, 0);
+            }
+            if (t1.intersect(ray)) {
+                col = RGB(0, 1, 1);
+            }
+            if (t2.intersect(ray)) {
+                col = RGB(1, 1, 1);
+            }
 			
 			img.at<Vec3f>(y, x) = col; // store pixel color
 		}

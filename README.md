@@ -2,7 +2,7 @@
 **Deadline**: 01.10.2020
 
 Please put your name here:  
-**Name**: Albrit Bendo
+**Name**: Albrit Bendo and Eliza Checiu
 ## Foreword
 ### Implementation of a Minimal Ray Tracing System
 

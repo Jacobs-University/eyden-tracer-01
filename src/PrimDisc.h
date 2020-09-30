@@ -6,26 +6,26 @@
 // --- IMPLENET class CPrimDisc ---
 // --- PUT YOUR CODE HERE ---
 
-CPrimDisc::CPrimDisc() : IPrim() {
-    m_radius = 1;
-    m_origin = Vec3f(0, 0, 0);
-    m_normal = Vec3f(0, 1, 0);
-}
+class CPrimDisc : public CPrimPlane {
 
-CPrimDisc::~CPrimDisc() = default;
+private:
+    float m_radius;
+public:
+    CPrimDisc(const Vec3f& origin, const Vec3f& normal, const float radius)
+    : CPrimPlane(origin, normal), m_radius(radius)
+    {}
 
-Vec3f CPrimDisc::getNormal() const{
-    return m_normal;
-}
+    virtual ~CPrimDisc() = default;
 
-Vec3f CPrimDisc::getOrigin() const {
-    return m_origin;
-}
+    virtual bool CPrimDisc::intersect(Ray &ray) const {
+        float t = (getOrigin() - ray.org).dot(getNormal()) / ray.dir.dot(getNormal());
+        if (t < Epsilon || t > ray.t) return false;
+        if (norm(ray.org + (ray.dir * t ) - getOrigin()) > m_radius) {
+            return false;
+        }
+        ray.t = t;
+        return true;
 
-Vec3f CPrimDisc::getRadius() const {
-    return m_radius;
-}
-
-virtual bool CPrimDisc::intersect(Ray &ray) const {
+    }
 
 }
