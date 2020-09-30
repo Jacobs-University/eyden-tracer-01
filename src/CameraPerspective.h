@@ -29,12 +29,24 @@ public:
 		, m_up(up)
 	{
 		// --- PUT YOUR CODE HERE ---
+		m_focus = 1 / tanf(angle * Pif / 360);
+		m_yAxis = -m_up;
+		m_xAxis = m_dir.cross(m_up);
+		m_zAxis = m_dir;
 	}
 	virtual ~CCameraPerspective(void) = default;
 
 	virtual void InitRay(Ray& ray, int x, int y) override
 	{
 		// --- PUT YOUR CODE HERE ---
+		float cx = (x + 0.5) / getResolution().width;
+		float cy = (y + 0.5) / getResolution().height;
+		float sscx = (2 * cx - 1) * m_zAxis;
+		float sscy = 2 * cy - 1;
+
+		ray.org = m_pos;
+		ray.dir = normalize(getAspectRatio() * sscx * m_xAxis + sscy * m_yAxis + m_focus * m_zAxis);
+		ray.t = std::numeric_limits<float>::max();
 	}
 
 

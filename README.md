@@ -2,7 +2,7 @@
 **Deadline**: 01.10.2020
 
 Please put your name here:  
-**Name**: .......
+**Name**: Albrit Bendo
 ## Foreword
 ### Implementation of a Minimal Ray Tracing System
 

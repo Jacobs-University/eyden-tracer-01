@@ -14,10 +14,12 @@ Mat RenderFrame(ICamera& camera)
 	CPrimSphere s3(Vec3f(3, 0.8f, -2), 2);
 	CPrimPlane p1(Vec3f(0, -1, 0), Vec3f(0, 1, 0));
 	// Add disc primitive here
-	
+
 	CPrimTriangle t1(Vec3f(-2, 3.7f, 0), Vec3f(1, 2, 1), Vec3f(3, 2.8f, -2));
 	CPrimTriangle t2(Vec3f(3, 2, 3), Vec3f(3, 2, -3), Vec3f(-3, 2, -3));
 	
+	std::vector<IPrim*> objects = {&s1, &s2, &s3, &p1, &t1, &t2};
+
 	Mat img(camera.getResolution(), CV_32FC3); 	// image array
 	Ray ray;                            		// primary ray
 	
@@ -36,6 +38,11 @@ Mat RenderFrame(ICamera& camera)
 			 */
 			
 			 // --- PUT YOUR CODE HERE ---
+			for(auto object : objects) {
+				if(object->intersect(ray)) {
+					col = object->getColor();
+				}
+			}
 			
 			img.at<Vec3f>(y, x) = col; // store pixel color
 		}

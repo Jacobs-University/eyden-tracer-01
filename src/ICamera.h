@@ -18,7 +18,7 @@ public:
 		* @brief Constructor
 		* @param resolution The resolution of the camera in pixels
 		*/
-	ICamera(Size resolution)
+	ICamera(Size &resolution)
 		: m_resolution(resolution)
 		, m_aspectRatio(static_cast<float>(resolution.width) / resolution.height)
 	{}

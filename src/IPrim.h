@@ -13,6 +13,8 @@ struct Ray;
  */
 class IPrim
 {
+private:
+	Vec3f m_color;
 public:
 	/**
 	* @brief Constructor
@@ -21,6 +23,7 @@ public:
 	IPrim(const IPrim&) = delete;
 	virtual ~IPrim(void) = default;
 	const IPrim& operator=(const IPrim&) = delete;
+	Vec3f getColor() { return m_color;}
 
 	/**
 	 * @brief Checks for intersection between ray \b ray and the primitive

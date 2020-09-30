@@ -31,7 +31,22 @@ public:
 	virtual bool intersect(Ray& ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		return false;
+		float dim1 = - m_normal.dot(ray.org - m_origin);
+		float dim2 = m_normal.dot(ray.dir);
+		float t;
+
+		if(dim2 == 0) {
+			return false;
+		} else {		
+			t = dim1 / dim2; 
+		}
+
+		if(t < Epsilon || t > ray.t) {
+			return false;
+		}
+
+		ray.t = t;
+		return true;	
 	}
 	
 	
