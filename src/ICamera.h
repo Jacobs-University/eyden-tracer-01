@@ -18,7 +18,7 @@ public:
 		* @brief Constructor
 		* @param resolution The resolution of the camera in pixels
 		*/
-	ICamera(Size resolution)
+	ICamera(Size &resolution)
 		: m_resolution(resolution)
 		, m_aspectRatio(static_cast<float>(resolution.width) / resolution.height)
 	{}
@@ -35,7 +35,7 @@ public:
 		* @param[in] x The x-coordinate of the pixel lying on the camera screen
 		* @param[in] y The y-coordinate of the pixel lying on the camera screen
 		*/
-	virtual void InitRay(Ray& ray, int x, int y) = 0;
+	virtual bool InitRay(Ray& ray, int x, int y) = 0;
 
 	/**
 		* @brief Retuns the camera resolution in pixels
@@ -55,4 +55,3 @@ private:
 };
 
 using ptr_camera_t = std::shared_ptr<ICamera>;
-

@@ -13,8 +13,9 @@ Mat RenderFrame(ICamera& camera)
 	CPrimSphere s2(Vec3f(1, -1, 1), 2.2f);
 	CPrimSphere s3(Vec3f(3, 0.8f, -2), 2);
 	CPrimPlane p1(Vec3f(0, -1, 0), Vec3f(0, 1, 0));
+
 	// Add disc primitive here
-	
+
 	CPrimTriangle t1(Vec3f(-2, 3.7f, 0), Vec3f(1, 2, 1), Vec3f(3, 2.8f, -2));
 	CPrimTriangle t2(Vec3f(3, 2, 3), Vec3f(3, 2, -3), Vec3f(-3, 2, -3));
 	
@@ -25,19 +26,19 @@ Mat RenderFrame(ICamera& camera)
 		for (int x = 0; x < img.cols; x++) {
 			
 			// Initialize your ray here
+			camera.InitRay(ray, x, y);
 			
 			// --- PUT YOUR CODE HERE ---
+			Vec3f color = RGB(0, 0, 0); // background color
 			
-			Vec3f col = RGB(0, 0, 0); // background color
+            if (s1.intersect(ray)) color = RGB(1, 0, 0);
+            if (s2.intersect(ray)) color = RGB(0, 1, 0);
+            if (s3.intersect(ray)) color = RGB(0, 0, 1);
+            if (p1.intersect(ray)) color = RGB(1, 1, 0);
+            if (t1.intersect(ray)) color = RGB(0, 1, 1);
+            if (t2.intersect(ray)) color = RGB(1, 1, 1);
 			
-			/*
-			 * Find closest intersection with scene
-			 * objetcs and calculate color
-			 */
-			
-			 // --- PUT YOUR CODE HERE ---
-			
-			img.at<Vec3f>(y, x) = col; // store pixel color
+			img.at<Vec3f>(y, x) = color; // store pixel color
 		}
 	
 	img.convertTo(img, CV_8UC3, 255);
