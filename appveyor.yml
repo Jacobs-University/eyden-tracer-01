@@ -28,12 +28,12 @@ environment:
 
 install:
   - set ORIGIN_PATH=%cd%
-  - set PATH=%PATH%;c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\
+  - set PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2019\
   - git submodule update --init --recursive
   - cd ..
   - git clone https://github.com/google/googletest.git
   - cd googletest
-  - cmake -G "Visual Studio 14 2015" .
+  - cmake -G "Visual Studio 15" .
   - devenv.exe googletest\msvc\gtest-md.sln /Upgrade
   - devenv.exe googletest\msvc\gtest-md.sln /Build
   - mkdir googletest\lib
