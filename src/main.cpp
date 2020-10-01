@@ -69,9 +69,9 @@ int main(int argc, char *argv[]) {
     Mat img3 = RenderFrame(cam3);
     imwrite("perspective3.jpg", img3);
 
-    // Add orthigraphic camera here as cam4
-    // Mat img4 = RenderFrame(cam4);
-    // imwrite("orthographic4.jpg", img4);
+    CCameraOrthographic cam4(resolution, Vec3f(0, 0, -1), Vec3f(0, 1, 0), 4);
+    Mat img4 = RenderFrame(cam4);
+    imwrite("orthographic4.jpg", img4);
 
     return 0;
 }

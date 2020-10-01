@@ -16,6 +16,7 @@ it takes to compile and link all the targets but at least it assures that the re
 * These test require us to export the eyden-tracer target as a library so that the test directory can use its interfaces and assemblies to run the tests.
 * The test will automatically run after running `make`. However, even upon failure, all the targets are still created in the binaries
 directory `bin`
+* This is currently turned off but you can comment out the add_subdirectory` in the CMakeLists.txt to enable the unit tests as they currently fail when building in the CI client.
 
 
 ## Foreword
