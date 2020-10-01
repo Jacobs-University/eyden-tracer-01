@@ -17,6 +17,7 @@ public:
 	/**
 	* @brief Constructor
 	*/
+    IPrim(Vec3f color) : m_color(color){};
 	IPrim(void) = default;
 	IPrim(const IPrim&) = delete;
 	virtual ~IPrim(void) = default;
@@ -31,4 +32,11 @@ public:
 	 * @retval false Otherwise
 	 */
 	virtual bool	intersect(Ray& ray) const = 0;
+    Vec3f getcolor(){
+        return m_color;
+    }
+
+private:
+    Vec3f m_color;
+
 };
