@@ -26,22 +26,6 @@ environment:
     - ARCH: amd64
     - ARCH: x86
 
-install:
-  - set ORIGIN_PATH=%cd%
-  - set PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2019\
-  - git submodule update --init --recursive
-  - cd ..
-  - git clone https://github.com/google/googletest.git
-  - cd googletest
-  - cmake -G "Visual Studio 15" .
-  - devenv.exe googletest\msvc\gtest-md.sln /Upgrade
-  - devenv.exe googletest\msvc\gtest-md.sln /Build
-  - mkdir googletest\lib
-  - copy googletest\msvc\gtest-md\Debug\gtestd.lib googletest\lib\gtest.lib
-  - copy googletest\msvc\gtest-md\Debug\gtest_main-mdd.lib googletest\lib\gtest_main.lib
-  - set GTEST_ROOT=%cd%\googletest
-  - cd %ORIGIN_PATH%
-
 build_script:
   - choco install opencv
   - cd c:\projects\eyden-tracer
@@ -50,8 +34,8 @@ build_script:
   - cmake -DOpenCV_DIR=c:\tools\opencv\build -G"Visual Studio 15 Win64" -DUSE_OPENGL=ON ..
   - msbuild /m /p:Configuration=Release /p:Platform="x64" eyden-tracer.sln
 
-test_script:
-  - ctest -C Debug -VV
+#test_script:
+#  - ctest -C Debug -VV
 
 #test_script:
 #  - cmd: |-

@@ -62,4 +62,4 @@ install(FILES ${CORE_HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/eyden-
 # Creates folder "Modules" and adds target project
 set_target_properties(core PROPERTIES FOLDER "Modules")
 
-add_subdirectory(test)
+#add_subdirectory(test)
