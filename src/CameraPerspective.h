@@ -27,26 +27,35 @@ public:
 		, m_pos(pos)
 		, m_dir(dir)
 		, m_up(up)
+		, m_angle(angle)
 	{
 		// --- PUT YOUR CODE HERE ---
-		m_focus = 1 / tanf(angle * Pif / 360);
-		m_yAxis = -m_up;
-		m_xAxis = m_dir.cross(m_up);
-		m_zAxis = m_dir;
+		m_aspect = (float) resolution.width / (float) resolution.height;
+		m_focus = 1 / tan((m_angle * Pif) / 180);
+		m_yAxis = normalize(m_up * (-1));
+		m_xAxis = normalize(dir.cross(m_up));
+		m_zAxis = normalize(m_dir);
 	}
+
 	virtual ~CCameraPerspective(void) = default;
 
-	virtual void InitRay(Ray& ray, int x, int y) override
+	virtual bool InitRay(Ray& ray, int x, int y) override
 	{
 		// --- PUT YOUR CODE HERE ---
-		float cx = (x + 0.5) / getResolution().width;
-		float cy = (y + 0.5) / getResolution().height;
-		float sscx = (2 * cx - 1) * m_zAxis;
-		float sscy = 2 * cy - 1;
+		float width = getResolution().width;
+		float height = getResolution().height;
+
+		float ndcx = (x + 0.5) / width; // Device coordinates
+		float ndcy = (y + 0.5) / height;
+
+		float sscx = (2 * ndcx - 1) * m_aspect; // Screen space coordinates
+		float sscy = 2 * ndcy - 1;
 
 		ray.org = m_pos;
-		ray.dir = normalize(getAspectRatio() * sscx * m_xAxis + sscy * m_yAxis + m_focus * m_zAxis);
+		ray.dir = normalize(sscx * m_xAxis + sscy * m_yAxis + m_focus * m_dir);
 		ray.t = std::numeric_limits<float>::max();
+
+		return true;
 	}
 
 
@@ -55,9 +64,11 @@ private:
 	Vec3f m_pos;			///< Camera origin (center of projection)
 	Vec3f m_dir;			///< Camera viewing direction
 	Vec3f m_up;				///< Camera up-vector
-	float m_focus;			///< The focal length
+	float m_angle;			///< The focal length
 
 	// preprocessed values
+	float m_focus;
+	float m_aspect;
 	Vec3f m_xAxis;			///< Camera x-axis in WCS
 	Vec3f m_yAxis;			///< Camera y-axis in WCS
 	Vec3f m_zAxis;			///< Camera z-axis in WCS

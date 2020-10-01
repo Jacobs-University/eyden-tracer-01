@@ -19,10 +19,9 @@ public:
 	 * @param a Position of the first vertex
 	 * @param b Position of the second vertex
 	 * @param c Position of the third vertex
-	 * @param color - added for the color of primitive
 	 */
-	CPrimTriangle(Vec3f color, const Vec3f a, const Vec3f b, const Vec3f c)
-		: IPrim(color)
+	CPrimTriangle(const Vec3f &a, const Vec3f &b, const Vec3f &c)
+		: IPrim()
 		, m_a(a)
 		, m_b(b)
 		, m_c(c)
@@ -37,31 +36,19 @@ public:
 		Vec3f nca = (m_a - ray.org).cross(m_c - ray.org);
 		
 		float sum = nab.dot(ray.dir) + nbc.dot(ray.dir) + nca.dot(ray.dir);
-		float l1  = nab.dot(ray.dir) / sum;
-		float l2  = nbc.dot(ray.dir) / sum;
-		float l3  = nca.dot(ray.dir) / sum;
+		float lamb1  = nab.dot(ray.dir) / sum;
+		float lamb2  = nbc.dot(ray.dir) / sum;
+		float lamb3  = nca.dot(ray.dir) / sum;
 
-		if(l1 < 0 || l2 < 0 || l3 < 0) {
-			return false;
-		}
+		if(lamb1 < 0 || lamb2 < 0 || lamb3 < 0) return false;
 
-		Vec3f normal = (m_b - m_a).cross(m_c - m_a);
+		Vec3f p = m_a * lamb1 + m_b * lamb2 + m_c * lamb3;
+		float t = p[0] / ray.dir[0];
 
-		float d1 = - normal.dot(ray.org - m_a);
-		float d2 = normal.dot(ray.dir);
-		float t;
-
-		if(d2 == 0) {
-			return false;
-		} else {
-			t = d1 / d2;
-		} 
-
-		if(t < Epsilon || t > ray.t) {
-			return false;
-		}
+		if(t < Epsilon || t > ray.t) return false;
 
 		ray.t = t;
+		
 		return true;	
 	}
 

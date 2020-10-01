@@ -19,11 +19,13 @@ public:
 	/**
 	* @brief Constructor
 	*/
-	IPrim(void) = default;
+	IPrim() = default;
+
 	IPrim(const IPrim&) = delete;
-	virtual ~IPrim(void) = default;
+
+	virtual ~IPrim() = default;
+
 	const IPrim& operator=(const IPrim&) = delete;
-	Vec3f getColor() { return m_color;}
 
 	/**
 	 * @brief Checks for intersection between ray \b ray and the primitive
@@ -33,5 +35,5 @@ public:
 	 * @retval true If and only if a valid intersection has been found in the interval (epsilon; Ray::t)
 	 * @retval false Otherwise
 	 */
-	virtual bool	intersect(Ray& ray) const = 0;
+	virtual bool intersect(Ray& ray) const = 0;
 };
