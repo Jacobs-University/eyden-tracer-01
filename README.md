@@ -2,7 +2,7 @@
 **Deadline**: 01.10.2020
 
 Please put your name here:  
-**Name**: Katrin von Seggern
+**Name**: Katrin von Seggern, Jordan Streete
 ## Foreword
 ### Implementation of a Minimal Ray Tracing System
 
