@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\include\types.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\CameraOrthographic.h">
+      <Filter>Source Files\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\CameraPerspective.h">
+      <Filter>Source Files\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\ICamera.h">
+      <Filter>Source Files\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\IPrim.h">
+      <Filter>Source Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\PrimDisc.h">
+      <Filter>Source Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\PrimPlane.h">
+      <Filter>Source Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\PrimSphere.h">
+      <Filter>Source Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\PrimTriangle.h">
+      <Filter>Source Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\ray.h">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{A3FB2657-7E62-3508-95D9-077DA963AEF5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{97E80C4A-3BFB-33AA-85D7-035D1CFC9AF2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\camera">
+      <UniqueIdentifier>{5126C50F-0C11-3490-AAB1-D7852EA9DEE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitives">
+      <UniqueIdentifier>{95B96AFB-8C67-3BF3-B750-3A427BD3207F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utilities">
+      <UniqueIdentifier>{F77D1068-2FEF-37BC-A2B3-BFC6577B4FDA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

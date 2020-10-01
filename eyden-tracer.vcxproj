@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7B75DFCE-17A0-3C80-BAAE-220A6DB0AF5D}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>eyden-tracer</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\katri\Documents\GitHub\eyden-tracer-01\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">eyden-tracer.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">eyden-tracer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\katri\Documents\GitHub\eyden-tracer-01\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">eyden-tracer.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">eyden-tracer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\katri\Documents\GitHub\eyden-tracer-01\include;C:\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>5040</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\katri\Documents\GitHub\eyden-tracer-01\include;C:\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\katri\Documents\GitHub\eyden-tracer-01\include;C:\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\opencv\build\x64\vc15\lib\opencv_world440d.lib;C:\opencv\build\x64\vc15\lib\opencv_world440d.lib;C:\opencv\build\x64\vc15\lib\opencv_world440d.lib;C:\opencv\build\x64\vc15\lib\opencv_world440d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/katri/Documents/GitHub/eyden-tracer-01/bin/Debug/eyden-tracer.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/katri/Documents/GitHub/eyden-tracer-01/bin/Debug/eyden-tracer.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\katri\Documents\GitHub\eyden-tracer-01\include;C:\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>5040</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\katri\Documents\GitHub\eyden-tracer-01\include;C:\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\katri\Documents\GitHub\eyden-tracer-01\include;C:\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\opencv\build\x64\vc15\lib\opencv_world440.lib;C:\opencv\build\x64\vc15\lib\opencv_world440.lib;C:\opencv\build\x64\vc15\lib\opencv_world440.lib;C:\opencv\build\x64\vc15\lib\opencv_world440.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /machine:x64</AdditionalOptions>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/katri/Documents/GitHub/eyden-tracer-01/bin/Release/eyden-tracer.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/katri/Documents/GitHub/eyden-tracer-01/bin/Release/eyden-tracer.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/katri/Documents/GitHub/eyden-tracer-01/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\cmake-3.18.3-win64-x64\bin\cmake.exe -SC:/Users/katri/Documents/GitHub/eyden-tracer-01 -BC:/Users/katri/Documents/GitHub/eyden-tracer-01 --check-stamp-file C:/Users/katri/Documents/GitHub/eyden-tracer-01/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\3.18.3\CMakeCCompiler.cmake;C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\3.18.3\CMakeCXXCompiler.cmake;C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\3.18.3\CMakeRCCompiler.cmake;C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\3.18.3\CMakeSystem.cmake;C:\Users\katri\Documents\GitHub\eyden-tracer-01\cmake\types.h.in;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeCInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeCXXInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeGenericSystem.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeRCInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\FindPackageHandleStandardArgs.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\FindPackageMessage.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\Windows.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake;C:\opencv\build\OpenCVConfig-version.cmake;C:\opencv\build\OpenCVConfig.cmake;C:\opencv\build\x64\vc15\lib\OpenCVConfig.cmake;C:\opencv\build\x64\vc15\lib\OpenCVModules-debug.cmake;C:\opencv\build\x64\vc15\lib\OpenCVModules-release.cmake;C:\opencv\build\x64\vc15\lib\OpenCVModules.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/katri/Documents/GitHub/eyden-tracer-01/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\cmake-3.18.3-win64-x64\bin\cmake.exe -SC:/Users/katri/Documents/GitHub/eyden-tracer-01 -BC:/Users/katri/Documents/GitHub/eyden-tracer-01 --check-stamp-file C:/Users/katri/Documents/GitHub/eyden-tracer-01/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\3.18.3\CMakeCCompiler.cmake;C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\3.18.3\CMakeCXXCompiler.cmake;C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\3.18.3\CMakeRCCompiler.cmake;C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\3.18.3\CMakeSystem.cmake;C:\Users\katri\Documents\GitHub\eyden-tracer-01\cmake\types.h.in;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeCInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeCXXInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeGenericSystem.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeRCInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\FindPackageHandleStandardArgs.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\FindPackageMessage.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\Windows.cmake;C:\cmake-3.18.3-win64-x64\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake;C:\opencv\build\OpenCVConfig-version.cmake;C:\opencv\build\OpenCVConfig.cmake;C:\opencv\build\x64\vc15\lib\OpenCVConfig.cmake;C:\opencv\build\x64\vc15\lib\OpenCVModules-debug.cmake;C:\opencv\build\x64\vc15\lib\OpenCVModules-release.cmake;C:\opencv\build\x64\vc15\lib\OpenCVModules.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\katri\Documents\GitHub\eyden-tracer-01\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\include\types.h" />
+    <ClCompile Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\main.cpp" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\CameraOrthographic.h" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\CameraPerspective.h" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\ICamera.h" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\IPrim.h" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\PrimDisc.h" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\PrimPlane.h" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\PrimSphere.h" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\PrimTriangle.h" />
+    <ClInclude Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\src\ray.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\katri\Documents\GitHub\eyden-tracer-01\ZERO_CHECK.vcxproj">
+      <Project>{DE649F99-625F-3F16-B2F9-A5F9FE577F58}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
