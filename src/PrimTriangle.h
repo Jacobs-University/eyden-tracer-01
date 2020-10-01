@@ -31,7 +31,39 @@ public:
 	virtual bool intersect(Ray& ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		return false;
+		//Möller-Trumbore algorithm from the slides
+		Vec3f m_edge1 = m_b - m_a;
+		Vec3f m_edge2 = m_c - m_a;
+		const Vec3f pvec = ray.dir.cross(m_edge2);
+		const float det = m_edge1.dot(pvec);
+		if (fabs(det) < Epsilon) {
+			return false;
+		}
+
+		const float inv_det = 1.0f / det;
+		const Vec3f tvec = ray.org - m_a;
+		float u = tvec.dot(pvec);
+		u *= inv_det;
+		if (u < 0.0f || u > 1.0f)
+		{
+			return false;
+		}
+
+		const Vec3f qvec = tvec.cross(m_edge1);
+		float v = ray.dir.dot(qvec);
+		v *= inv_det;
+		if (v < 0.0f || v + u > 1.0f) 
+		{
+			return false;
+		}
+
+		float t = m_edge2.dot(qvec);
+		t *= inv_det;
+		if (ray.t <= t || t < Epsilon)
+			return false;
+
+		ray.t = t;
+		return true;
 	}
 
 	
@@ -39,4 +71,5 @@ private:
 	Vec3f m_a;		///< Position of the first vertex
 	Vec3f m_b;		///< Position of the second vertex
 	Vec3f m_c;		///< Position of the third vertex
+	//Vec3f m_color;	///< Color of the triangle
 };

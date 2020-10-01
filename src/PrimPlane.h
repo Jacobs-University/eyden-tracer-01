@@ -31,10 +31,17 @@ public:
 	virtual bool intersect(Ray& ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		return false;
+		float distance;
+		distance = (m_origin - ray.org).dot(m_normal) / ray.dir.dot(m_normal);
+		if (distance<Epsilon || isinf(distance) || distance>ray.t)
+		{
+			return false;
+		}
+		ray.t = distance;
+		return true;
 	}
-	
-	
+
+
 private:
 	Vec3f m_normal;	///< Point on the plane
 	Vec3f m_origin;	///< Normal to the plane
