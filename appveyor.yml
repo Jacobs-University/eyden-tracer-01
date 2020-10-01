@@ -21,6 +21,11 @@ platform: x64
 #install:
 #  -cmd: choco install OpenCV
 
+environment:
+  matrix:
+    - ARCH: amd64
+    - ARCH: x86
+
 build_script:
   - choco install opencv
   - cd c:\projects\eyden-tracer
@@ -28,6 +33,9 @@ build_script:
   - cd build
   - cmake -DOpenCV_DIR=c:\tools\opencv\build -G"Visual Studio 15 Win64" -DUSE_OPENGL=ON ..
   - msbuild /m /p:Configuration=Release /p:Platform="x64" eyden-tracer.sln
+
+#test_script:
+#  - ctest -C Debug -VV
 
 #test_script:
 #  - cmd: |-
