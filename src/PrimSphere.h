@@ -29,7 +29,30 @@ public:
 	virtual bool intersect(Ray &ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		return false;
+		float a = ray.dir.dot(ray.dir);
+		float b = 2 * ray.dir.dot(ray.org - m_origin);
+		float c = (ray.org - m_origin).dot(ray.org - m_origin) - m_radius * m_radius;
+
+		// Using discriminant
+		float D = b * b - 4 * a * c;
+		if(D < 0) {
+		    return false;
+		}
+		float x1 = (-b + sqrt(D)) / (2 * a);
+        float x2 = (-b - sqrt(D)) / (2 * a);
+
+        if((x1 < Epsilon && x2 < Epsilon) || (x1 > ray.t && x2 > ray.t)) {
+            return false;
+        }
+
+        if(x1 > x2) {
+            ray.t = x2;
+        }
+        else {
+            ray.t = x1;
+        }
+
+		return true;
 	}
 	
 	
