@@ -18,7 +18,7 @@ public:
 	* @brief Constructor
 	*/
 	IPrim(void) = default;
-	IPrim(const IPrim&) = delete;
+	IPrim(const IPrim&) = default;
 	virtual ~IPrim(void) = default;
 	const IPrim& operator=(const IPrim&) = delete;
 
