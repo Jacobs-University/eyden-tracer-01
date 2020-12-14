@@ -29,13 +29,25 @@ public:
 		, m_up(up)
 	{
 		// --- PUT YOUR CODE HERE ---
+		m_zAxis = m_dir;
+		m_xAxis = normalize(m_zAxis.cross(m_up));
+		m_yAxis = normalize(m_zAxis.cross(m_xAxis));
+		m_focus = 1.0f / tanf(angle * Pif / 360);
 	}
 	virtual ~CCameraPerspective(void) = default;
 
-	virtual void InitRay(Ray& ray, int x, int y) override
-	{
+	virtual void InitRay(Ray& ray, int x, int y) override {
 		// --- PUT YOUR CODE HERE ---
-	}
+		Size resolution = getResolution();
+
+        // scrSpCoord - screen space coordinates
+ 		float scrSpCoord_x = (2 * static_cast<float>(x) / resolution.width) - 1;
+        float scrSpCoord_y = (2 * static_cast<float>(y) / resolution.width) - 1;
+
+        ray.org = m_pos;
+        ray.dir = normalize(getAspectRatio() * scrSpCoord_x * m_xAxis + scrSpCoord_y * m_yAxis + m_focus * m_zAxis);
+        ray.t = std :: numeric_limits<float> :: infinity();
+ 	}
 
 
 private:
