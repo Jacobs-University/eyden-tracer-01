@@ -2,7 +2,7 @@
 **Deadline**: 14.12.2020
 
 Please put your name here:  
-**Name**: .......
+**Name**: Shahin Mammadov
 ## Foreword
 ### Implementation of a Minimal Ray Tracing System
 

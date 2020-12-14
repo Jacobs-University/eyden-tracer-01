@@ -37,6 +37,7 @@ public:
 		*/
 	virtual void InitRay(Ray& ray, int x, int y) = 0;
 
+
 	/**
 		* @brief Retuns the camera resolution in pixels
 		* @return The camera resolution in pixels
