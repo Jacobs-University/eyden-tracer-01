@@ -28,13 +28,26 @@ public:
 		, m_dir(dir)
 		, m_up(up)
 	{
-		// --- PUT YOUR CODE HERE ---
+        m_focus = 1.0f / tanf(angle * Pif / 360);
+        m_zAxis = dir;
+        m_xAxis = normalize(m_zAxis.cross(up));
+        m_yAxis = normalize(m_zAxis.cross(m_xAxis));
 	}
 	virtual ~CCameraPerspective(void) = default;
 
 	virtual void InitRay(Ray& ray, int x, int y) override
 	{
-		// --- PUT YOUR CODE HERE ---
+        // Raster-NDC conversion
+        float ndcx = static_cast<float>(x) / getResolution().width;
+        float ndcy = static_cast<float>(y) / getResolution().height;
+
+        // NDC-Screen conversion
+        float sscx = 2 * ndcx - 1;
+        float sscy = 2 * ndcy - 1;
+
+        ray.org = m_pos;
+        ray.dir = normalize(m_focus * m_zAxis + getAspectRatio() * sscx * m_xAxis + sscy * m_yAxis);
+        ray.t = std::numeric_limits<float>::infinity();
 	}
 
 
