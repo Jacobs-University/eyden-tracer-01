@@ -52,7 +52,7 @@ public:
             double delta = sqrt(r_sq - h_sq);
 
             // Calculate the nearest intersection
-            t = tb + (L.dot(L) < m_radius ? 1 : -1) * delta;
+            t = tb + (L.dot(L) < m_radius ? 1.0f : -1.0f) * delta;
         }
 
         if (t <= Epsilon || t >= ray.t)

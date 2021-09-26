@@ -39,7 +39,7 @@ public:
         // Calculate distance of intersection from ray origin
         float t = proj / ray.dir.dot(m_normal);
 
-		if (t < Epsilon || t > ray.t || isinf(t))
+		if (t <= Epsilon || t >= ray.t || isinf(t))
             return false;
 
 		ray.t = t;
