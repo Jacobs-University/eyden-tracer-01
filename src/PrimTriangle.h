@@ -40,7 +40,7 @@ public:
         if (abs(determinant) < Epsilon)
             return false;
 
-        float inv_determinant = 1.0f / det;
+        float inv_determinant = 1.0f / determinant;
 
         // Calculate vector from triangle point to ray origin
         Vec3f T = ray.org - m_a;
@@ -54,10 +54,10 @@ public:
         float v = inv_determinant * Q.dot(ray.dir);
 
         // Check if coordinate goes out of triangle bounds
-        if (v < 0.0f || v > 1.0f)
+        if (v < 0.0f || v + u > 1.0f)
             return false;
 
-        float t = inv_determinant * Q.det(edge_2);
+        float t = inv_determinant * Q.dot(edge_2);
 
         if (t <= Epsilon || t >= ray.t)
             return false;
