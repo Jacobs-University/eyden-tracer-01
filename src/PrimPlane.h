@@ -30,8 +30,21 @@ public:
 
 	virtual bool intersect(Ray& ray) const override
 	{
-		// --- PUT YOUR CODE HERE ---
-		return false;
+        // Calculate vector from ray origin to origin of plane
+        Vec3f L = m_origin - ray.org;
+
+        // Calculate projection
+        float proj = L.dot(m_normal);
+
+        // Calculate distance of intersection from ray origin
+        float t = proj / ray.dir.dot(m_normal);
+
+		if (t < Epsilon || t > ray.t || isinf(t))
+            return false;
+
+		ray.t = t;
+        
+		return true;
 	}
 	
 	
