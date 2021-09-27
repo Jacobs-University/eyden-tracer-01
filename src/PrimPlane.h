@@ -7,29 +7,29 @@
 
 // ================================ Infinite Plane Primitive Class ================================
 /**
-	* @brief The Plane Geometrical Primitive class
-	* @ingroup modulePrimitive
-	* @author Sergey G. Kosov, sergey.kosov@project-10.de
-	*/
+    * @brief The Plane Geometrical Primitive class
+    * @ingroup modulePrimitive
+    * @author Sergey G. Kosov, sergey.kosov@project-10.de
+    */
 class CPrimPlane : public IPrim
 {
 public:
-	/**
-	 * @brief Constructor
-	 * @param origin Point on the plane
-	 * @param normal Normal to the plane
-	 */
-	CPrimPlane(const Vec3f& origin, const Vec3f& normal)
-		: IPrim()
-		, m_normal(normal)
-		, m_origin(origin)
-	{
-		normalize(m_normal);
-	}
-	virtual ~CPrimPlane(void) = default;
+    /**
+     * @brief Constructor
+     * @param origin Point on the plane
+     * @param normal Normal to the plane
+     */
+    CPrimPlane(const Vec3f& origin, const Vec3f& normal)
+        : IPrim()
+        , m_normal(normal)
+        , m_origin(origin)
+    {
+        normalize(m_normal);
+    }
+    virtual ~CPrimPlane(void) = default;
 
-	virtual bool intersect(Ray& ray) const override
-	{
+    virtual bool intersect(Ray& ray) const override
+    {
         // Calculate vector from ray origin to origin of plane
         Vec3f L = m_origin - ray.org;
 
@@ -39,16 +39,16 @@ public:
         // Calculate distance of intersection from ray origin
         float t = proj / ray.dir.dot(m_normal);
 
-		if (t <= Epsilon || t >= ray.t || isinf(t))
+        if (t <= Epsilon || t >= ray.t || isinf(t))
             return false;
 
-		ray.t = t;
-        
-		return true;
-	}
-	
-	
+        ray.t = t;
+
+        return true;
+    }
+
+
 private:
-	Vec3f m_normal;	///< Point on the plane
-	Vec3f m_origin;	///< Normal to the plane
+    Vec3f m_normal;	///< Point on the plane
+    Vec3f m_origin;	///< Normal to the plane
 };

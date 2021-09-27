@@ -14,20 +14,20 @@
 class CPrimSphere : public IPrim
 {
 public:
-	/**
-	 * @brief Constructor
-		 * @param origin Position of the center of the sphere
-		 * @param radius Radius of the sphere
-	 */
-	CPrimSphere(Vec3f origin, float radius)
-		: IPrim()
-		, m_origin(origin)
-		, m_radius(radius)
-	{}
-	virtual ~CPrimSphere(void) = default;
+    /**
+     * @brief Constructor
+         * @param origin Position of the center of the sphere
+         * @param radius Radius of the sphere
+     */
+    CPrimSphere(Vec3f origin, float radius)
+        : IPrim()
+        , m_origin(origin)
+        , m_radius(radius)
+    {}
+    virtual ~CPrimSphere(void) = default;
 
-	virtual bool intersect(Ray &ray) const override
-	{
+    virtual bool intersect(Ray &ray) const override
+    {
         float t;
         float r_sq = pow(m_radius, 2);
 
@@ -37,7 +37,7 @@ public:
         // Calculate distance to intersection of ray with perpendicular radius
         float tb = ray.dir.dot(L);
 
-        // Calculate the square of the length of the ray originating from 
+        // Calculate the square of the length of the ray originating from
         // sphere origin perpendicular to the ray direction
         float h_sq = L.dot(L) - pow(tb, 2);
 
@@ -60,12 +60,12 @@ public:
 
         ray.t = t;
 
-		return true;
-	}
-	
-	
+        return true;
+    }
+
+
 private:
-	Vec3f m_origin;	///< Position of the center of the sphere
-	float m_radius;	///< Radius of the sphere
+    Vec3f m_origin;	///< Position of the center of the sphere
+    float m_radius;	///< Radius of the sphere
 };
 

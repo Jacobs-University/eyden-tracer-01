@@ -5,30 +5,30 @@
 
 // ================================ Disc Primitive Class ================================
 /**
-	* @brief Disc Primitive class
-	* @ingroup modulePrimitive
-	*/
+    * @brief Disc Primitive class
+    * @ingroup modulePrimitive
+    */
 class CPrimDisc : public IPrim
 {
 public:
-	/**
-	 * @brief Constructor
-	 * @param origin Point on the disc
-	 * @param normal Normal to the disc
+    /**
+     * @brief Constructor
+     * @param origin Point on the disc
+     * @param normal Normal to the disc
      * @param radius Radius of the disc
-	 */
-	CPrimDisc(const Vec3f& origin, const Vec3f& normal, const float radius)
-		: IPrim()
-		, m_origin(origin)
-		, m_normal(normal)
+     */
+    CPrimDisc(const Vec3f& origin, const Vec3f& normal, const float radius)
+        : IPrim()
+        , m_origin(origin)
+        , m_normal(normal)
         , m_radius(radius)
-	{
-		normalize(m_normal);
-	}
-	virtual ~CPrimDisc(void) = default;
+    {
+        normalize(m_normal);
+    }
+    virtual ~CPrimDisc(void) = default;
 
-	virtual bool intersect(Ray& ray) const override
-	{
+    virtual bool intersect(Ray& ray) const override
+    {
         // Calculate vector from ray origin to origin of disc
         Vec3f L = m_origin - ray.org;
 
@@ -48,14 +48,14 @@ public:
         if (sqrt(intersect_vector.dot(intersect_vector)) - m_radius > 0)
             return false;
 
-		ray.t = t;
-        
-		return true;
-	}
-	
-	
+        ray.t = t;
+
+        return true;
+    }
+
+
 private:
-	Vec3f m_normal;	///< Point on the disc
-	Vec3f m_origin;	///< Normal to the disc
+    Vec3f m_normal;	///< Point on the disc
+    Vec3f m_origin;	///< Normal to the disc
     float m_radius; ///< Radius of the disc
 };
