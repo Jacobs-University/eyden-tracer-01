@@ -2,7 +2,7 @@
 **Deadline**: 30.09.20201
 
 Please put your name here:  
-**Name**: .......
+**Name**: Henri Sota
 ## Foreword
 ### Implementation of a Minimal Ray Tracing System
 
