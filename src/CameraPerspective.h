@@ -28,13 +28,30 @@ public:
 		, m_dir(dir)
 		, m_up(up)
 	{
-		// --- PUT YOUR CODE HERE ---
+		m_dir = normalize(dir);	
+
+		m_aspect =  (1.0) * resolution.width / resolution.height;
+		m_focus = cotan(angle * M_PI / 360);
+
+		m_yAxis = (-1) * m_up;
+		m_xAxis = m_dir.cross(m_up);
 	}
 	virtual ~CCameraPerspective(void) = default;
 
 	virtual void InitRay(Ray& ray, int x, int y) override
 	{
-		// --- PUT YOUR CODE HERE ---
+		float ndcx = (x + 0.5) / getResolution().width;  
+		float ndcy = (y + 0.5) / getResolution().height;
+		float sscx = (2 * ndcx - 1) * m_aspect;  
+		float sscy = (2 * ndcy - 1);
+
+		Vec3f f = m_dir * m_focus;
+		ray.org = m_pos;
+		ray.dir =  f + sscx * m_xAxis + sscy * m_yAxis;
+		
+		ray.t   = 340282e+38;
+
+		return true;
 	}
 
 

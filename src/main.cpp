@@ -25,9 +25,10 @@ Mat RenderFrame(ICamera& camera)
 		for (int x = 0; x < img.cols; x++) {
 			
 			// Initialize your ray here
-			
-			// --- PUT YOUR CODE HERE ---
-			
+			if(camera.InitRay(x, y, ray) == false)
+				continue;
+
+
 			Vec3f col = RGB(0, 0, 0); // background color
 			
 			/*
@@ -35,7 +36,13 @@ Mat RenderFrame(ICamera& camera)
 			 * objetcs and calculate color
 			 */
 			
-			 // --- PUT YOUR CODE HERE ---
+			for(CPrim* geo_body : geo_bodies)
+			{
+				if(geo_body->Intersect(ray))
+				{
+					col = geo_body->getColor();
+				}
+			}
 			
 			img.at<Vec3f>(y, x) = col; // store pixel color
 		}
