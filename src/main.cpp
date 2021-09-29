@@ -1,19 +1,22 @@
 #include "CameraPerspective.h"
 #include "CameraEnvironmental.h"
 
+#include "PrimDisc.h"
 #include "PrimSphere.h"
 #include "PrimPlane.h"
 #include "PrimTriangle.h"
+
 
 Mat RenderFrame(ICamera& camera)
 {
 	// scene objects
 	
-	CPrimSphere s1(Vec3f(-2, 1.7f, 0), 2);
+	// CPrimSphere s1(Vec3f(-2, 1.7f, 0), 2);
 	CPrimSphere s2(Vec3f(1, -1, 1), 2.2f);
 	CPrimSphere s3(Vec3f(3, 0.8f, -2), 2);
 	CPrimPlane p1(Vec3f(0, -1, 0), Vec3f(0, 1, 0));
 	// Add disc primitive here
+	CPrimDisc d1(Vec3f(-2, 1.7f, 0), Vec3f(0, 1, 0), 1.0);
 	
 	CPrimTriangle t1(Vec3f(-2, 3.7f, 0), Vec3f(1, 2, 1), Vec3f(3, 2.8f, -2));
 	CPrimTriangle t2(Vec3f(3, 2, 3), Vec3f(3, 2, -3), Vec3f(-3, 2, -3));
@@ -27,6 +30,7 @@ Mat RenderFrame(ICamera& camera)
 			// Initialize your ray here
 			
 			// --- PUT YOUR CODE HERE ---
+			camera.InitRay(ray, y, x);
 			
 			Vec3f col = RGB(0, 0, 0); // background color
 			
@@ -36,7 +40,62 @@ Mat RenderFrame(ICamera& camera)
 			 */
 			
 			 // --- PUT YOUR CODE HERE ---
-			
+
+			float maxDistance = std::numeric_limits<float>::infinity();
+
+			if (d1.intersect(ray)) {
+				if (ray.t < maxDistance) {
+					col = RGB(1, 0, 0);
+					maxDistance = ray.t;
+				}
+				
+			} 
+
+			if (s2.intersect(ray)) {
+				if (ray.t < maxDistance) {
+					col = RGB(0, 1, 0);
+					maxDistance = ray.t;
+				}
+				
+			} 
+
+			if (s3.intersect(ray)) {
+				if (ray.t < maxDistance) {
+					col = RGB(0, 0, 1);
+					maxDistance = ray.t;
+				}
+				
+			} 
+
+			if (p1.intersect(ray)) {
+				if (ray.t < maxDistance) {
+					col = RGB(1, 1, 0);
+					maxDistance = ray.t;
+				}
+				
+			} 
+
+			if (t1.intersect(ray)) {
+				if (ray.t < maxDistance) {
+					col = RGB(0, 1, 1);
+					maxDistance = ray.t;
+				}
+				
+			} 
+
+			if (t2.intersect(ray)) {
+				if (ray.t < maxDistance) {
+					col = RGB(1, 1, 1);
+					maxDistance = ray.t;
+				}
+				
+			} 
+
+			if (maxDistance == std::numeric_limits<float>::infinity()){
+				col = RGB(0, 0, 0);
+			}
+		
+
 			img.at<Vec3f>(y, x) = col; // store pixel color
 		}
 	
@@ -60,6 +119,10 @@ int main(int argc, char* argv[])
 	CCameraPerspective cam3(resolution, Vec3f(-8, 3, 8), Vec3f(1, -0.1f, -1), Vec3f(1, 1, 0), 45);
 	Mat img3 = RenderFrame(cam3);
 	imwrite("perspective3.jpg", img3);
+
+	CCameraEnvironmental cam4(resolution, Vec3f(-8, 3, 8), Vec3f(1, -0.1f, -1), Vec3f(1, 1, 0));
+	Mat img4 = RenderFrame(cam4);
+	imwrite("perspective4.jpg", img4);
 
 	// AddeEnvironmental camera here as cam4
 	// Mat img4 = RenderFrame(cam4);
