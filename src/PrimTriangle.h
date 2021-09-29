@@ -30,8 +30,40 @@ public:
 	
 	virtual bool intersect(Ray& ray) const override
 	{
-		// --- PUT YOUR CODE HERE ---
-		return false;
+		//define edges
+		Vec3f edge1 = m_a - m_b;
+		Vec3f edge2 = m_a - m_c;
+		
+		// calc helper vectors
+		const Vec3f P = ray.dir.cross(edge2);
+		const float det = edge1.dot(P);
+		if (fabs(det) < Epsilon)
+			return false;
+		
+		
+		const float inv_det = 1.0f / det;
+		const Vec3f T = ray.org - m_a;
+		float u = T.dot(P);
+		u *= inv_det;
+		if (u < 0.0f || u > 1.0f)
+			return false;
+		
+		const Vec3f Q = T.cross(edge2);
+		float v = ray.dir.dot(Q);
+		v *= inv_det;
+		if (v < 0.0f || v + u > 1.0f)
+			return false;
+		
+		// calc distance
+		float t = edge2.dot(Q);
+		t *= inv_det;
+		if (ray.t <= t || t < Epsilon) {
+			return false;
+		} else {
+			ray.t = t;
+			return true;
+		}
+		
 	}
 
 	

@@ -4,12 +4,14 @@
 #include "PrimSphere.h"
 #include "PrimPlane.h"
 #include "PrimTriangle.h"
+#include "PrimDisc.h"
 
 Mat RenderFrame(ICamera& camera)
 {
 	// scene objects
 	
-	CPrimSphere s1(Vec3f(-2, 1.7f, 0), 2);
+	// CPrimSphere s1(Vec3f(-2, 1.7f, 0), 2);
+	CPrimDisc s1(Vec3f(-2, 1.7f, 0), Vec3f(0, 1, 0), 2);
 	CPrimSphere s2(Vec3f(1, -1, 1), 2.2f);
 	CPrimSphere s3(Vec3f(3, 0.8f, -2), 2);
 	CPrimPlane p1(Vec3f(0, -1, 0), Vec3f(0, 1, 0));
@@ -25,8 +27,8 @@ Mat RenderFrame(ICamera& camera)
 		for (int x = 0; x < img.cols; x++) {
 			
 			// Initialize your ray here
-			
-			// --- PUT YOUR CODE HERE ---
+			Ray ray;
+			camera.InitRay(ray, x, y);
 			
 			Vec3f col = RGB(0, 0, 0); // background color
 			
@@ -35,7 +37,25 @@ Mat RenderFrame(ICamera& camera)
 			 * objetcs and calculate color
 			 */
 			
-			 // --- PUT YOUR CODE HERE ---
+			 if (s1.intersect(ray)) {
+				 // col = RGB(1, 0, 0);
+				 col = RGB(1, 0, 1);
+			 }
+			 if (s2.intersect(ray)) {
+				 col = RGB(0, 1, 0);
+			 }
+			 if (s3.intersect(ray)) {
+				 col = RGB(0, 0, 1);
+			 }
+			 if (p1.intersect(ray)) {
+				 col = RGB(1, 1, 0);
+			 }
+			 if (t1.intersect(ray)) {
+				 col = RGB(0, 1, 1);
+			 }
+			 if (t2.intersect(ray)) {
+				 col = RGB(1, 1, 1);
+			 }
 			
 			img.at<Vec3f>(y, x) = col; // store pixel color
 		}
@@ -62,8 +82,9 @@ int main(int argc, char* argv[])
 	imwrite("perspective3.jpg", img3);
 
 	// AddeEnvironmental camera here as cam4
-	// Mat img4 = RenderFrame(cam4);
-	// imwrite("orthographic4.jpg", img4);
+	CCameraEnvironmental cam4(resolution, Vec3f(-8, 3, 8), Vec3f(1, 1, 0));
+	Mat img4 = RenderFrame(cam4);
+	imwrite("environmental4.jpg", img4);
 
 	return 0;
 }

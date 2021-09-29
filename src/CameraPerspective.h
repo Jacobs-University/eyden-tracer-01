@@ -22,19 +22,32 @@ public:
 	 * @param up Normalized camera up-vector
 	 * @param angle (Vertical) full opening angle of the viewing frustum in degrees
 	 */
-	CCameraPerspective(Size resolution, const Vec3f& pos, const Vec3f& dir, const Vec3f& up, float angle)
+	CCameraPerspective(Size resolution, const Vec3f& pos, const Vec3f& dir,
+			const Vec3f& up, float angle)
 		: ICamera(resolution)
 		, m_pos(pos)
 		, m_dir(dir)
 		, m_up(up)
+		, m_focus(1.0f / tanf(angle * Pif / 360))
 	{
-		// --- PUT YOUR CODE HERE ---
+		//define orientation
+		m_zAxis = m_dir;
+		m_xAxis = normalize(m_zAxis.cross(up));
+		m_yAxis = normalize(m_zAxis.cross(m_xAxis));
 	}
 	virtual ~CCameraPerspective(void) = default;
 
 	virtual void InitRay(Ray& ray, int x, int y) override
 	{
-		// --- PUT YOUR CODE HERE ---
+		//convert raster to ssc
+		Size res = getResolution();
+		float sscx = 2 * (static_cast<float>(x) / res.width)-1;
+		float sscy = 2 * (static_cast<float>(y) / res.height)-1;
+		
+		//define ray
+		ray.dir = normalize(m_zAxis*m_focus + m_xAxis*sscx*getAspectRatio() + m_yAxis*sscy);
+		ray.org = m_pos;
+		ray.t = std::numeric_limits<float>::infinity();
 	}
 
 
