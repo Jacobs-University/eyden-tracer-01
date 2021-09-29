@@ -30,20 +30,20 @@ public:
 
 	virtual bool intersect(Ray& ray) const override
 	{
-		// --- PUT YOUR CODE HERE ---
-
-
-		float dist = (this -> m_origin - ray.org).dot(this -> m_normal) / ray.dir.dot(this -> m_normal);
-
-		if (dist < Epsilon || isinf(dist) || ray.t < dist) {
+		float t1;
+		if(m.normal.dot(ray.dir) == 0) {
 			return false;
-		} else {
-			ray.t = dist;
-			return true;
+		}
+		else {
+			t1 = ((m_origin - ray.origin).dot(m_normal))/(ray.dir.dot(m_normal))
 		}
 
+		if(t1<Epsilon || t1>ray.t)
+		 	return false;
+		
+		ray.t = t1;
+		return true;
 	}
-	
 	
 private:
 	Vec3f m_normal;	///< Point on the plane

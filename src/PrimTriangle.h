@@ -30,44 +30,39 @@ public:
 	
 	virtual bool intersect(Ray& ray) const override
 	{
-		// --- PUT YOUR CODE HERE ---
-
-		const Vec3f e1 = m_b - m_a;
-		const Vec3f e2 = m_c - m_a;
-
-		const Vec3f P = ray.dir.cross(e2);
-
-		const float deter = e1.dot(P);
-
-		if (deter < Epsilon) {
+		// Calculate normal of the triangle plane
+		Vec3f normal = (m_b-m_a).cross(m_c-m_a);
+		// Check if the ray is parallel to the plane
+		if(normal.dot(ray.dir) == 0)
 			return false;
-		} 
+		
+		Vec3f nab = (m_b-ray.org).cross(m_a-ray.org);
+		Vec3f nbc = (m_c-ray.org).cross(m_b-ray.org);
+		Vec3f nca = (m_a-ray.org).cross(m_c-ray.org);
 
-		const float inverse_deter = 1.0f / deter;
+		float lambda_star1  = nab.dot(ray.dir);
+		float lambda_star2  = nbc.dot(ray.dir);
+		float lambda_star3  = nca.dot(ray.dir);
+		float lambda_star_sum = (nca + nab + nbc).dot(ray.dir);
 
-		const Vec3f T = ray.org - m_a;
-		float u = inverse_deter * (T.dot(P));
+		float lambda1  = nab.dot(ray.dir) /lambda_star_sum;
+		float lambda2  = nbc.dot(ray.dir) /lambda_star_sum;
+		float lambda3  = nca.dot(ray.dir) /lambda_star_sum;
 
-		if (u > 1.0f || u < 0.0f) {
+		if(lambda1 < 0)
 			return false;
-		}
-
-
-		const Vec3f Q = T.cross(e1);
-		float v = inverse_deter * (Q.dot(ray.dir));
-		if (v < 0.0f || v + u >= 1.0f) {
+		if(lambda2 < 0)
 			return false;
-		} 
-
-
-		float t = inverse_deter * (e2.dot(Q));
-
-		if (t >= ray.t || t < Epsilon) {
+		if(lambda3 < 0)
 			return false;
-		}
 
-		ray.t = t;
+		float new_t = ((-1) * normal.dot(ray.org - m_a)) / normal.dot(ray.dir);
+		if(new_t < Epsilon || new_t > ray.t)
+			return false;
+
+		ray.t = new_t;
 		return true;
+	}
 	}
 
 	
