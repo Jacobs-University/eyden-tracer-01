@@ -6,6 +6,7 @@
 #include "PrimPlane.h"
 #include "PrimTriangle.h"
 
+void updateIfDistanceChange(Ray&, float&, Vec3f&, Vec3f);
 
 Mat RenderFrame(ICamera& camera)
 {
@@ -43,57 +44,30 @@ Mat RenderFrame(ICamera& camera)
 
 			float maxDistance = std::numeric_limits<float>::infinity();
 
-			if (d1.intersect(ray)) {
-				if (ray.t < maxDistance) {
-					col = RGB(1, 0, 0);
-					maxDistance = ray.t;
-				}
+			d1.intersect(ray);
+			updateIfDistanceChange(ray, maxDistance, col, RGB(1, 0, 0));
 				
-			} 
 
-			if (s2.intersect(ray)) {
-				if (ray.t < maxDistance) {
-					col = RGB(0, 1, 0);
-					maxDistance = ray.t;
-				}
+			s2.intersect(ray);
+			updateIfDistanceChange(ray, maxDistance, col, RGB(0, 1, 0));
+			
 				
-			} 
 
-			if (s3.intersect(ray)) {
-				if (ray.t < maxDistance) {
-					col = RGB(0, 0, 1);
-					maxDistance = ray.t;
-				}
-				
-			} 
+			s3.intersect(ray);
+			updateIfDistanceChange(ray, maxDistance, col, RGB(0, 0, 1));
+			
 
-			if (p1.intersect(ray)) {
-				if (ray.t < maxDistance) {
-					col = RGB(1, 1, 0);
-					maxDistance = ray.t;
-				}
-				
-			} 
+			p1.intersect(ray);
+			updateIfDistanceChange(ray, maxDistance, col, RGB(1, 1, 0));
+			 
 
-			if (t1.intersect(ray)) {
-				if (ray.t < maxDistance) {
-					col = RGB(0, 1, 1);
-					maxDistance = ray.t;
-				}
-				
-			} 
+			t1.intersect(ray);
+			updateIfDistanceChange(ray, maxDistance, col, RGB(0, 1, 1));
+			 
 
-			if (t2.intersect(ray)) {
-				if (ray.t < maxDistance) {
-					col = RGB(1, 1, 1);
-					maxDistance = ray.t;
-				}
-				
-			} 
-
-			if (maxDistance == std::numeric_limits<float>::infinity()){
-				col = RGB(0, 0, 0);
-			}
+			t2.intersect(ray);
+			updateIfDistanceChange(ray, maxDistance, col, RGB(1, 1, 1));
+		
 		
 
 			img.at<Vec3f>(y, x) = col; // store pixel color
@@ -101,6 +75,13 @@ Mat RenderFrame(ICamera& camera)
 	
 	img.convertTo(img, CV_8UC3, 255);
 	return img;
+}
+
+void updateIfDistanceChange(Ray& ray, float& newDistance, Vec3f& oldColor, Vec3f newColor) {
+	if (ray.t < newDistance) {
+		newDistance = ray.t;
+		oldColor = newColor;
+	}
 }
 
 int main(int argc, char* argv[])
@@ -120,9 +101,9 @@ int main(int argc, char* argv[])
 	Mat img3 = RenderFrame(cam3);
 	imwrite("perspective3.jpg", img3);
 
-	CCameraEnvironmental cam4(resolution, Vec3f(-8, 3, 8), Vec3f(1, -0.1f, -1), Vec3f(1, 1, 0));
+	CCameraEnvironmental cam4(resolution, Vec3f(-8, 3, 8), Vec3f(0, 0, 1), Vec3f(0, 1, 0));
 	Mat img4 = RenderFrame(cam4);
-	imwrite("perspective4.jpg", img4);
+	imwrite("environmental4.jpg", img4);
 
 	// AddeEnvironmental camera here as cam4
 	// Mat img4 = RenderFrame(cam4);
