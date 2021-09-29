@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "Prim.h"
+#include "IPrim.h"
 
 /**
  * @brief Triangle Geaometrical Primitive class
