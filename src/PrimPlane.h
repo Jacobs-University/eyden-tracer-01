@@ -30,12 +30,20 @@ public:
 
 	virtual bool intersect(Ray& ray) const override
 	{
-		// --- PUT YOUR CODE HERE ---
-		return false;
+		//calc dist to intersectiion (assuming it exists)
+		double dist = (m_origin - ray.org).dot(m_normal) / ray.dir.dot(m_normal);
+		
+		//return true and update ray len if intersection exists
+		if (dist > ray.t || dist < Epsilon || isinf(dist)) {
+			return false;
+		} else {
+			ray.t = dist;
+			return true;
+		}
 	}
 	
 	
-private:
+protected:
 	Vec3f m_normal;	///< Point on the plane
 	Vec3f m_origin;	///< Normal to the plane
 };
