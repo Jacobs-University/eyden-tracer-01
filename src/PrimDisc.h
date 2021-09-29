@@ -16,32 +16,39 @@ public:
 	 */
 	CPrimDisc(const Vec3f& origin, const Vec3f& normal)
 		: IPrim()
-		, m_normal(normal)
 		, m_origin(origin)
-	{
-		normalize(m_normal);
-	}
-	virtual ~CPrimDisc(void) = default;
+        , m_normal(normal)
+        , m_radius(radius)
+    {
+        normalize(m_normal);
+    }
+    virtual ~CPrimDisc(void) = default;
 
 	virtual bool intersect(Ray& ray) const override
 	{
-		float t1;
-		if(m.normal.dot(ray.dir) == 0) {
-			return false;
-		}
-		else {
-			t1 = ((m_origin - ray.origin).dot(m_normal))/(ray.dir.dot(m_normal))
-		}
+		//discance between ray origin and m_origin
+        Vec3f L = m_origin - ray.org;
 
-		if(t1<Epsilon || t1>ray.t)
-		 	return false;
-		
-		ray.t = t1;
-		return true;
+        float p = L.dot(m_normal);
+
+        float t = p / ray.dir.dot(m_normal);
+
+        if (t <= Epsilon || t >= ray.t || isinf(t))
+            return false;
+
+        Vec3f intersect_vector = ray.org + t * ray.dir - m_origin;
+
+        if (sqrt(intersect_vector.dot(intersect_vector)) - m_radius > 0)
+            return false;
+
+        ray.t = t;
+
+        return true;
 	}
 	
 	
 private:
-	Vec3f m_normal;	///< Point on the plane
-	Vec3f m_origin;	///< Normal to the plane
+	Vec3f m_normal;	///< Point on the disc plane
+	Vec3f m_origin;	///< Normal to the disc plane
+	 float m_radius; ///< Radius of the disc
 };
