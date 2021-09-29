@@ -6,49 +6,42 @@
 // --- IMPLENET class CPrimDisc ---
 // --- PUT YOUR CODE HERE ---
 
-class CPrimDisc : public IPrim
-{
+class CPrimDisc : public IPrim {
+
 public:
-	/**
-	 * @brief Constructor
-	 * @param origin Point on the plane
-	 * @param normal Normal to the plane
-	 */
-	CPrimDisc(const Vec3f& origin, const Vec3f& normal)
-		: IPrim()
-		, m_origin(origin)
-        , m_normal(normal)
-        , m_radius(radius)
-    {
-        normalize(m_normal);
-    }
-    virtual ~CPrimDisc(void) = default;
 
-	virtual bool intersect(Ray& ray) const override
+	CPrimDisc(const Vec3f& origin, const Vec3f& normal, float radius): 
+		IPrim(), 
+		m_origin(origin), 
+		m_normal(normal),
+		m_radius(radius)
 	{
-		//discance between ray origin and m_origin
-        Vec3f L = m_origin - ray.org;
-
-        float p = L.dot(m_normal);
-
-        float t = p / ray.dir.dot(m_normal);
-
-        if (t <= Epsilon || t >= ray.t || isinf(t))
-            return false;
-
-        Vec3f intersect_vector = ray.org + t * ray.dir - m_origin;
-
-        if (sqrt(intersect_vector.dot(intersect_vector)) - m_radius > 0)
-            return false;
-
-        ray.t = t;
-
-        return true;
+		normalize(m_normal);
 	}
-	
-	
+
+	virtual ~CPrimDisc(void) = default;
+
+	virtual bool intersect(Ray& ray) const override{
+		float dist = (this -> m_origin - ray.org).dot(this -> m_normal) / ray.dir.dot(this -> m_normal);
+		if (dist < Epsilon || isinf(dist) || ray.t < dist) {
+			return false;
+		}
+		Vec3f vec_from_org = (ray.org + dist * ray.dir) - m_origin;
+
+		float dist_from_org = (sqrt(vec_from_org.dot(vec_from_org)));
+
+		if (dist_from_org > m_radius) {
+			return false;
+		}
+
+		ray.t = dist;
+		return true;
+	}
+
 private:
-	Vec3f m_normal;	///< Point on the disc plane
-	Vec3f m_origin;	///< Normal to the disc plane
-	 float m_radius; ///< Radius of the disc
+
+	Vec3f m_normal;
+	Vec3f m_origin;
+	float m_radius;
+
 };

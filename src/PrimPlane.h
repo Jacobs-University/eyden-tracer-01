@@ -45,7 +45,6 @@ public:
 		return true;
 	}
 	
-	
 private:
 	Vec3f m_normal;	///< Point on the plane
 	Vec3f m_origin;	///< Normal to the plane
