@@ -1,3 +1,0 @@
-/home/jackson/cgHw/assignment1/eyden-tracer-01/CMakeFiles/rebuild_cache.dir
-/home/jackson/cgHw/assignment1/eyden-tracer-01/CMakeFiles/edit_cache.dir
-/home/jackson/cgHw/assignment1/eyden-tracer-01/CMakeFiles/eyden-tracer.dir
