@@ -28,6 +28,7 @@ public:
 		, m_dir(dir)
 		, m_up(up)
 	{
+		// --- PUT YOUR CODE HERE ---
 
 		this -> m_focus = 1.0f / tanf(angle * Pif / 360);
 	}
@@ -35,6 +36,8 @@ public:
 
 	virtual void InitRay(Ray& ray, int x, int y) override
 	{
+		// --- PUT YOUR CODE HERE ---
+
 		Size resolution = getResolution();
 
 		float ndcx = static_cast<float>(x) / resolution.width;
@@ -50,7 +53,10 @@ public:
 		ray.org = m_pos;
 		ray.dir = normalize(getAspectRatio() * sscx * xAxis + sscy * yAxis + m_dir * zAxis);
 		ray.t = std::numeric_limits<float>::infinity();
+
+
 	}
+
 
 private:
 	// input values
@@ -64,3 +70,4 @@ private:
 	Vec3f m_yAxis;			///< Camera y-axis in WCS
 	Vec3f m_zAxis;			///< Camera z-axis in WCS
 };
+

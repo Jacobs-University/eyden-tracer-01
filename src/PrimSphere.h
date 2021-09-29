@@ -27,38 +27,32 @@ public:
 	virtual ~CPrimSphere(void) = default;
 
 	virtual bool intersect(Ray &ray) const override
-	{	
-		//defining the roots
-		float t1,t2;
+	{
+		// --- PUT YOUR CODE HERE ---
 
-		Vec3f L = ray.org - m_center;
-		float a = r1;
-		float b = 2 * ray.dir.dot(L);
-		float c = L.dot(L) - m_radius*m_radius;
+		Vec3f L = this -> m_origin - ray.org;
 
-		float d = b*b - 4*a*c;
-		if(d < 0)
-			return false; // negative discriminant not intersection found
-		else if(dis == 0)
-		{
-			t1 = (-0.5) * B / A;
-			t2 = (-0.5) * B / A;
-		}else {	
-			 t1 = (-0.5) * (B - sqrt(dis)) / A;
-			 t2 = (-0.5) * (B + sqrt(dis)) / A;
+		float a = 1;
+		float b = static_cast<float>(-2 * ray.dir.dot(L));
+		float c = 	static_cast<float>(L.dot(L)) - static_cast<float>(this -> m_radius * this -> m_radius);
+
+		float D = b * b - 4 * a * c;
+
+		if (D < 0) {
+			return false;
+		} else {
+
+			float t1 = (-b + sqrt(D)) / (2 * a);
+			float t2 = (-b - sqrt(D)) / (2 * a);
+
+			if (t1 < Epsilon || t1 > ray.t) {
+				return false;
+			} else {
+
+				ray.t = t2 > Epsilon ? t2 : t1;
+				return true;
+			}
 		}
-		// Make sure t2 is always the right value of t
-		if(t1 > t2)
-			std::swap(t1, t2);
-		// Check the boundaries
-		if( t1 < Epsilon || t1 > ray.t)
-		{
-			t1 = t2;
-			if(t1 < Epsilon || t1 > ray.t) return false;
-		}
-		ray.t = t1;
-		return true;
-		 
 	}
 	
 	
