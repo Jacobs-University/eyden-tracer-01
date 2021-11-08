@@ -35,6 +35,22 @@ public:
 	virtual void InitRay(Ray& ray, int x, int y) override
 	{
 		// --- PUT YOUR CODE HERE ---
+		Size resolution = getResolution();
+
+		float ndcx = static_cast<float>(x) / resolution.width;
+		float ndcy = static_cast<float>(y) / resolution.height;
+
+		float sscx = 2 * ndcx - 1;
+		float sscy = 2 * ndcy - 1;
+
+		Vec3f zAxis = this -> m_dir;
+		Vec3f xAxis = normalize(zAxis.cross(this -> m_up));
+		Vec3f yAxis = normalize(zAxis.cross(xAxis));
+
+		ray.org = m_pos;
+		ray.dir = normalize(getAspectRatio() * sscx * xAxis + sscy * yAxis + m_dir * zAxis);
+		ray.t = std::numeric_limits<float>::infinity();
+
 	}
 
 
