@@ -31,7 +31,42 @@ public:
 	virtual bool intersect(Ray& ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		return false;
+		const Vec3f e1 = m_b - m_a;
+		const Vec3f e2 = m_c - m_a;
+
+		const Vec3f P = ray.dir.cross(e2);
+
+		const float deter = e1.dot(P);
+
+		if (deter < Epsilon) {
+			return false;
+		} 
+
+		const float inverse_deter = 1.0f / deter;
+
+		const Vec3f T = ray.org - m_a;
+		float u = inverse_deter * (T.dot(P));
+
+		if (u > 1.0f || u < 0.0f) {
+			return false;
+		}
+
+
+		const Vec3f Q = T.cross(e1);
+		float v = inverse_deter * (Q.dot(ray.dir));
+		if (v < 0.0f || v + u >= 1.0f) {
+			return false;
+		} 
+
+
+		float t = inverse_deter * (e2.dot(Q));
+
+		if (t >= ray.t || t < Epsilon) {
+			return false;
+		}
+
+		ray.t = t;
+		return true;
 	}
 
 	
