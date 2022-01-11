@@ -1,6 +1,6 @@
 #include "CameraPerspective.h"
 #include "CameraEnvironmental.h"
-
+#include "PrimDisc.h"
 #include "PrimSphere.h"
 #include "PrimPlane.h"
 #include "PrimTriangle.h"
@@ -8,7 +8,7 @@
 Mat RenderFrame(ICamera& camera)
 {
 	// scene objects
-	
+	//CPrimDisc s1(Vec3f(-2, 1.7f, 0), Vec3f(0, 1, 0), 2);
 	CPrimSphere s1(Vec3f(-2, 1.7f, 0), 2);
 	CPrimSphere s2(Vec3f(1, -1, 1), 2.2f);
 	CPrimSphere s3(Vec3f(3, 0.8f, -2), 2);
@@ -20,20 +20,38 @@ Mat RenderFrame(ICamera& camera)
 	
 	Mat img(camera.getResolution(), CV_32FC3); 	// image array
 	Ray ray;                            		// primary ray
-	
+
 	for(int y = 0; y< img.rows; y++)
 		for (int x = 0; x < img.cols; x++) {
 			
 			// Initialize your ray here
 			
 			// --- PUT YOUR CODE HERE ---
-			
+			camera.InitRay(ray, x, y);
 			Vec3f col = RGB(0, 0, 0); // background color
 			
 			/*
 			 * Find closest intersection with scene
 			 * objetcs and calculate color
 			 */
+			if (s1.intersect(ray)) {
+				col = RGB(1, 0, 0);
+			}
+			if (s2.intersect(ray)) {
+				col = RGB(0, 1, 0);
+			}
+			if (s3.intersect(ray)) {
+				col = RGB(0, 0, 1);
+			}
+			if (p1.intersect(ray)) {
+				col = RGB(1, 1, 0);
+			}
+			if (t1.intersect(ray)) {
+				col = RGB(0, 1, 1);
+			}
+			if (t2.intersect(ray)) {
+				col = RGB(1, 1, 1);
+			}
 			
 			 // --- PUT YOUR CODE HERE ---
 			
@@ -51,7 +69,7 @@ int main(int argc, char* argv[])
 	
 	CCameraPerspective cam1(resolution, Vec3f(0, 0, 10), Vec3f(0, 0, -1), Vec3f(0, 1, 0), 60);
 	Mat img1 = RenderFrame(cam1);
-	imwrite("perspective1.jpg", img1);
+	imwrite("perspective1withDisc.jpg", img1);
 	
 	CCameraPerspective cam2(resolution, Vec3f(-8, 3, 8), Vec3f(1, -0.1f, -1), Vec3f(0, 1, 0), 45);
 	Mat img2 = RenderFrame(cam2);
