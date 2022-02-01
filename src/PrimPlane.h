@@ -31,7 +31,11 @@ public:
 	virtual bool intersect(Ray& ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		return false;
+        double intersection = static_cast<double>(m_normal.dot(m_origin  - ray.org)) / static_cast<double>(ray.dir.dot(m_normal));
+        
+        if (intersection < Epsilon || isinf(intersection) || intersection > ray.t ) return false;    //If the distance is infinite(confondus) or there is no intersction(parallel)
+
+		return true;
 	}
 	
 	
